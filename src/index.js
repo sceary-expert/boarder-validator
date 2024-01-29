@@ -6,6 +6,7 @@ import SignIn from './components/SignIn';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import Layout from './Layout';
 import DashBoard from './components/DashBoard';
+import Validator from './components/Validator';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
       <Route path = '' element= {<SignIn/>} /> 
       <Route path = 'sign-in' element= {<SignIn/>} />   
       <Route path = 'dashboard' element = {<DashBoard/>}/>   
+      <Route path='validator' element={<Validator/>}/>
     </Route>
 
   )
