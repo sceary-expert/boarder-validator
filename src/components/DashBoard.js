@@ -128,8 +128,8 @@ export default function DashBoard()
         console.log(users);
     };
     const SendEmails = async () => {
-      // const apiUrl = process.env.API_URL;
-      const apiUrl = 'https://boarder-validation.onrender.com';
+      const apiUrl = process.env.API_URL;
+      
   
       try {
         const emailIdsArray = initialUsers
