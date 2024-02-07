@@ -128,7 +128,8 @@ export default function DashBoard()
         console.log(users);
     };
     const SendEmails = async () => {
-      const apiUrl = process.env.API_URL;
+      // const apiUrl = process.env.API_URL;
+      const apiUrl = 'https://boarder-validation.onrender.com';
   
       try {
         const emailIdsArray = initialUsers
@@ -137,7 +138,7 @@ export default function DashBoard()
   
         console.log(emailIdsArray);
   
-        const response = await fetch(apiUrl, {
+        const response = await fetch(`${apiUrl}/send-otp`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
