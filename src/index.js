@@ -2,30 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import SignIn from './components/SignIn';
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import Layout from './Layout';
-import DashBoard from './components/DashBoard';
-import Validator from './components/Validator';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    
-    <Route path='/' element={<Layout/>} >
-      <Route path = '' element= {<SignIn/>} /> 
-      <Route path = 'sign-in' element= {<SignIn/>} />   
-      <Route path = 'dashboard' element = {<DashBoard/>}/>   
-      <Route path='validator' element={<Validator/>}/>
-    </Route>
+import App from './App';
 
-  )
-)
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router = {router} />
+  <React.StrictMode>    
+    <App/>
   </React.StrictMode>
 );
 
