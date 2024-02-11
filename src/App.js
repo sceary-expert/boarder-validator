@@ -9,10 +9,12 @@ const App = () => {
     <Router>
       <Routes>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<DashBoard />} />
-          <Route path='sign-in' element={<SignIn />} />
-          <Route path='dashboard' element={<DashBoard />} />
-          <Route path='validator' element={<Validator />} />
+          {/* <Route index element={<DashBoard />} /> */}
+          <Route path='' element={<SignIn />} />
+          <Route path='/sign-in' element={<SignIn />} />
+          <Route path='/dashboard' element={<DashBoard />} />
+          <Route path='/validator' element={<Validator />} />
+          
         </Route>
       </Routes>
     </Router>

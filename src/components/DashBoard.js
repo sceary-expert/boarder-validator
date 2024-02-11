@@ -1,6 +1,7 @@
 
-
+// require('dotenv').config();
 import { useState } from "react";
+import NavBar from "./NavBar";
 
 export default function DashBoard()
 {
@@ -10,7 +11,13 @@ export default function DashBoard()
         "email":"random@gmail.com",
         "checked": true
     },
+    {
+      "name" : "Arnab Upadhay",
+      "email":"upaarunav2002@gmail.com",
+      "checked": true
+  },
   ]
+  const [loading, setLoading] = useState(false);
     // const initialUsers = [
     //     {
     //         "name" : "Anisur Mondal",
@@ -118,6 +125,7 @@ export default function DashBoard()
     //         "checked": true
     //       },
     // ]
+    const apiUrl = process.env.REACT_APP_API_URL;
     // const [validUsers, setValidUsers] = useState({})
     const [users, setUsers] = useState(initialUsers);
 
@@ -128,10 +136,13 @@ export default function DashBoard()
         console.log(users);
     };
     const SendEmails = async () => {
-      const apiUrl = process.env.API_URL;
+      
+      // console.log("url ",apiUrl);
+      // const apiUrl = 'https://boarder-validation.onrender.com';
       
   
       try {
+        setLoading(true);
         const emailIdsArray = initialUsers
           .filter((user) => user.checked)
           .map((user) => user.email);
@@ -151,11 +162,18 @@ export default function DashBoard()
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-  
         const responseData = await response.json();
         console.log("success", responseData);
+
+        // Store response data in local storage
+        localStorage.setItem("emailResponse", JSON.stringify(responseData));
+        // const responseData = await response.json();
+        // console.log("success", responseData);
       } catch (error) {
         console.error("Error during API call:", error);
+      }
+      finally{
+        setLoading(false);
       }
     };
   
@@ -163,6 +181,7 @@ export default function DashBoard()
     return (
         
         <div>
+          <NavBar/>
             <div className="">
             {users.map((user, index) => (            
                 <button  key={index} className={`w-full rounded-md border border-black-500 p-2 `}  onClick={() => handleCheckboxChange(index)}>
@@ -176,9 +195,9 @@ export default function DashBoard()
             ))}
                 </div>
                 <div className="flex items-center justify-center p-4">
-                    <button onClick = {SendEmails} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                        Button
-                    </button>
+                  <button onClick={SendEmails} disabled={loading} className={`bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ${loading ? 'cursor-not-allowed opacity-50' : ''}`}>
+                      Button
+                  </button>
                 </div>
             
         </div>
