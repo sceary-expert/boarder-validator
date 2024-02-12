@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import DashBoard from './DashBoard';
@@ -6,12 +6,19 @@ import DashBoard from './DashBoard';
 export default function SignIn() {
   const [signedIn, setSignedIn] = useState(false);
   const [password, setPassword] = useState("");
-  const validPass = process.env.PASSWORD;
-  if(password === "1234")
-  {
-    setSignedIn(true);
-    localStorage.setItem("isSignedIn", true);
-  }
+  // const validPass = process.env.REACT_APP_PASSWORD;
+  const isSignedIn = localStorage.getItem('signedIn');
+  console.log("signed in ", isSignedIn);
+  
+  useEffect(() => {
+    if(password === "1234")localStorage.setItem('signedIn', 'YES')
+    if(isSignedIn === "YES")
+    {
+      setSignedIn(true);
+    }
+  }, [setSignedIn, isSignedIn, password]);
+
+  
 
   return (
     signedIn?<DashBoard/>:
@@ -73,11 +80,11 @@ export default function SignIn() {
                 </div>
                 <div className="mt-2">
                   <input
-                    value = "password"
+                    value={password}
                     onChange={(e) =>{setPassword(e.target.value)}}
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
-                    type="password"
-                    placeholder="Password"
+                    // type="password"
+                    
                   ></input>
                 </div>
               </div>

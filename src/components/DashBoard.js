@@ -13,7 +13,7 @@ export default function DashBoard()
     },
     {
       "name" : "Arnab Upadhay",
-      "email":"upaarunav2002@gmail.com",
+      "email":"deydhananjoycoc@gmail.com",
       "checked": true
   },
   ]
@@ -143,11 +143,11 @@ export default function DashBoard()
   
       try {
         setLoading(true);
-        const emailIdsArray = initialUsers
+        const emailIdsArray = users
           .filter((user) => user.checked)
           .map((user) => user.email);
   
-        console.log(emailIdsArray);
+        console.log("otps will be sent to ", emailIdsArray);
   
         const response = await fetch(`${apiUrl}/send-otp`, {
           method: "POST",
@@ -168,7 +168,7 @@ export default function DashBoard()
         // Store response data in local storage
         localStorage.setItem("emailResponse", JSON.stringify(responseData));
         // const responseData = await response.json();
-        // console.log("success", responseData);
+        console.log("success", responseData);
       } catch (error) {
         console.error("Error during API call:", error);
       }
@@ -196,7 +196,7 @@ export default function DashBoard()
                 </div>
                 <div className="flex items-center justify-center p-4">
                   <button onClick={SendEmails} disabled={loading} className={`bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded ${loading ? 'cursor-not-allowed opacity-50' : ''}`}>
-                      Button
+                      send
                   </button>
                 </div>
             
