@@ -125,7 +125,7 @@ export default function DashBoard()
     //         "checked": true
     //       },
     // ]
-    const apiUrl = process.env.REACT_APP_API_URL;
+    // const apiUrl = process.env.REACT_APP_API_URL;
     // const [validUsers, setValidUsers] = useState({})
     const [users, setUsers] = useState(initialUsers);
 
@@ -138,7 +138,7 @@ export default function DashBoard()
     const SendEmails = async () => {
       
       // console.log("url ",apiUrl);
-      // const apiUrl = 'https://boarder-validation.onrender.com';
+      const apiUrl = 'https://boarder-validation.onrender.com';
       
   
       try {
